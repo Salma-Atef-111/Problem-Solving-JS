@@ -584,63 +584,180 @@ Lewandowski: 2
 } 
 */
 
-const game = {
-  team1: "Bayern Munich",
-  team2: "Borrussia Dortmund",
-  players: [
-    [
-      "Neuer",
-      "Pavard",
-      "Martinez",
-      "Alaba",
-      "Davies",
-      "Kimmich",
-      "Goretzka",
-      "Coman",
-      "Muller",
-      "Gnarby",
-      "Lewandowski",
-    ],
-    [
-      "Burki",
-      "Schulz",
-      "Hummels",
-      "Akanji",
-      "Hakimi",
-      "Weigl",
-      "Witsel",
-      "Hazard",
-      "Brandt",
-      "Sancho",
-      "Gotze",
-    ],
-  ],
-  score: "4:0",
-  scored: ["Lewandowski", "Gnarby", "Lewandowski", "Hummels"],
-  date: "Nov 9th, 2037",
-  odds: {
-    team1: 1.33,
-    x: 3.25,
-    team2: 6.5,
-  },
-};
-//1- 
-for(const [i , el] of game.scored.entries()){
-  console.log(`Goal ${i+1}: ${el}`);
-}
-//2-
-const odd = Object.values(game.odds);
-// console.log(odd);
-let avg = 0;
-for (const n of odd)
-  avg += n;
-  avg /= odd.length
-  console.log(avg);
-//3- 
-const allOdds = Object.entries(game.odds);
-// console.log(allOdds);
+// const game = {
+//   team1: "Bayern Munich",
+//   team2: "Borrussia Dortmund",
+//   players: [
+//     [
+//       "Neuer",
+//       "Pavard",
+//       "Martinez",
+//       "Alaba",
+//       "Davies",
+//       "Kimmich",
+//       "Goretzka",
+//       "Coman",
+//       "Muller",
+//       "Gnarby",
+//       "Lewandowski",
+//     ],
+//     [
+//       "Burki",
+//       "Schulz",
+//       "Hummels",
+//       "Akanji",
+//       "Hakimi",
+//       "Weigl",
+//       "Witsel",
+//       "Hazard",
+//       "Brandt",
+//       "Sancho",
+//       "Gotze",
+//     ],
+//   ],
+//   score: "4:0",
+//   scored: ["Lewandowski", "Gnarby", "Lewandowski", "Hummels"],
+//   date: "Nov 9th, 2037",
+//   odds: {
+//     team1: 1.33,
+//     x: 3.25,
+//     team2: 6.5,
+//   },
+// };
+// //1- 
+// for(const [i , el] of game.scored.entries()){
+//   console.log(`Goal ${i+1}: ${el}`);
+// }
+// //2-
+// const odd = Object.values(game.odds);
+// // console.log(odd);
+// let avg = 0;
+// for (const n of odd)
+//   avg += n;
+//   avg /= odd.length
+//   console.log(avg);
+// //3- 
+// const allOdds = Object.entries(game.odds);
+// // console.log(allOdds);
 
-for(const [team , el] of allOdds){
-  const teamS = team === "x" ? "draw" :`victory ${game[team]}`
-  console.log(`Odd of victory ${teamS}: ${el}`);
-}
+// for(const [team , el] of allOdds){
+//   const teamS = team === "x" ? "draw" :`victory ${game[team]}`
+//   console.log(`Odd of victory ${teamS}: ${el}`);
+// }
+
+/////////////////////////////////////////
+//! Challenge 10
+/*
+Let's continue with our football betting app! This time, we have a map called 
+'gameEvents' (see below) with a log of the events that happened during the 
+game. The values are the events themselves, and the keys are the minutes in which 
+each event happened (a football game has 90 minutes plus some extra time).
+*/
+//todo:  Your tasks: 
+/*
+1. Create an array 'events' of the different game events that happened (no 
+duplicates) 
+2. After the game has finished, is was found that the yellow card from minute 64 
+was unfair. So remove this event from the game events log. 
+3. Compute and log the following string to the console: "An event happened, on 
+average, every 9 minutes" (keep in mind that a game has 90 minutes) 
+4. Loop over 'gameEvents' and log each element to the console, marking 
+whether it's in the first half or second half (after 45 min) of the game, like this: 
+[FIRST HALF] 17:  GOAL 
+*/
+
+// const gameEvents = new Map([ 
+//   [17, '⚽ GOAL'], 
+//   [36, '🔁 Substitution'], 
+//   [47, '⚽ GOAL'], 
+//   [61, '🔁 Substitution'], 
+//   [64, '🔶 Yellow card'], 
+//   [69, '🔴 Red card'], 
+//   [70, '🔁 Substitution'], 
+//   [72, '🔁 Substitution'], 
+//   [76, '⚽ GOAL'], 
+//   [80, '⚽ GOAL'], 
+//   [92, '🔶 Yellow card'], 
+//   ]); 
+
+
+// // 1-
+// const events = [...new Set(gameEvents.values())];
+// console.log(events);
+
+
+// //2-
+// gameEvents.delete(64);
+// console.log(gameEvents);
+
+// //3-
+// console.log(`An event happened, on average, every ${90/gameEvents.size } minutes`);
+// //bouns
+// const time = [...gameEvents.keys()].pop();
+// console.log(`An event happened, on average, every ${time/gameEvents.size } minutes`);
+
+// //4-
+// for (const [key,value] of gameEvents){
+//   if(key <= 45){
+//     console.log(`First half ${key}: ${value}`);
+//   }
+//   else{
+//     console.log(`second half ${key}: ${value}`);
+//   }
+// }
+
+/////////////////////////////////////////
+//! Challenge 11
+/*
+Write a program that receives a list of variable names written in underscore_case 
+and convert them to camelCase. 
+The input will come from a textarea inserted into the DOM (see code below to 
+insert the elements), and conversion will happen when the button is pressed.
+*/
+
+/*
+Test data (pasted to textarea, including spaces): 
+underscore_case 
+first_name 
+Some_Variable  
+calculate_AGE 
+delayed_departure
+
+todo:  Your tasks: 
+Should produce this output (5 separate console.log outputs): 
+underscoreCase      
+✅ 
+firstName           
+✅✅ 
+someVariable        
+✅✅✅ 
+calculateAge        
+✅✅✅✅ 
+delayedDeparture    
+✅✅✅✅✅
+*/
+//?Hints: 
+/*
+§ Remember which character defines a new line in the textarea 
+§ The solution only needs to work for a variable made out of 2 words, like a_b 
+§ Start without worrying about the 
+name conversion working 
+✅. Tackle that only after you have the variable 
+§ This challenge is difficult on purpose, so start watching the solution in case 
+you're stuck. Then pause and continue! 
+Afterwards, test with your own test data! */
+
+document.body.append(document.createElement('textarea')); 
+document.body.append(document.createElement('button'));
+
+const button = document.querySelector("button");
+
+button.addEventListener("click" , function(){
+  const text = document.querySelector("textarea").value;
+  const rows = text.split("\n")
+  for(const [i,row] of rows.entries()){
+  const [first , second] = row.toLowerCase().trim().split("_");
+  const outPut = `${first}${second.replace(second[0] , second[0].toUpperCase())}`
+  console.log(`${outPut.padEnd(20)}${'✅'.repeat(i+1)}`);
+  }
+})
